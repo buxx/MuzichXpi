@@ -2,4 +2,4 @@
 
 ## 0.1 ##
 
-Initial release
+Simple button and option for share url on muzi.ch
