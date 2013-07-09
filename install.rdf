@@ -12,7 +12,6 @@
 
 		<em:description>Share song on Muzi.ch</em:description>
 		<em:homepageURL>http://muzi.ch/</em:homepageURL>
-		<em:optionsURL>chrome://MuzichXpi/content/options.xul</em:optionsURL>
 
 		<em:targetApplication>
 
