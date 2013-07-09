@@ -1,26 +1,18 @@
 <?xml version="1.0"?>
-
-<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-	<Description about="urn:mozilla:install-manifest">
-		<em:id>muzichxpi@muzi.ch</em:id>
-
-		<em:name>Muzich sharing Tool</em:name>
-		<em:version>0.1</em:version>
-		<em:type>2</em:type>
-		<em:creator>Bastien Sevajol</em:creator>
-
-		<em:description>Share song on Muzi.ch</em:description>
-		<em:homepageURL>http://muzi.ch/</em:homepageURL>
-
-		<em:targetApplication>
-
-			<Description>
-				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-				<em:minVersion>5.0</em:minVersion>
-				<em:maxVersion>16.*</em:maxVersion>
-
-			</Description>
-		</em:targetApplication>
-	</Description>
-</RDF>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="rdf:#$xWhVp2"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="5.0"
+                   em:maxVersion="*" />
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="muzichxpi@muzi.ch"
+                   em:name="Muzich sharing Tool"
+                   em:version="0.1"
+                   em:creator="Bastien Sevajol"
+                   em:description="Share song on Muzi.ch"
+                   em:homepageURL="http://muzi.ch/">
+    <em:targetApplication RDF:resource="rdf:#$xWhVp2"/>
+  </RDF:Description>
+</RDF:RDF>
