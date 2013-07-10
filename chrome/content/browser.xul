@@ -20,4 +20,12 @@
 			<toolbarbutton id="muzich-xpi-toolbar-button" label="&urlshare;" tooltiptext="&urlshare;" oncommand="shareUrl.share()"/>
 		</toolbarpalette>
     
+    <popup id="contentAreaContextMenu">
+        <menuitem id="menu-item-share"
+                  insertafter="context-selectall"
+                  accesskey="S"
+                  label="&urlshare;"
+                  oncommand="shareUrl.share()" />
+    </popup>
+    
 </overlay>

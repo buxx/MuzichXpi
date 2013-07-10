@@ -20,7 +20,10 @@ var muzich_config = {
       "border: 10px solid #DDDDDD; "+
       "border-radius: 10px 10px 10px 10px; "+
       "box-shadow: 0 0 20px #000000; "+
-      "background-color: #F4F4F4; ",
+      "background-color: #F4F4F4; "+
+      "background-image: url(http://static.muzi.ch/img/ajax-loader.gif); "+
+      "background-repeat:no-repeat; "+
+      "background-position: center center; ",
     close_button : "font-weigth: bold; "+
       "color: black; "+
       "position: absolute; "+
@@ -43,9 +46,7 @@ var muzich_tool =  function () {
     {
       var iframe = content.document.getElementById("muzich_iframe_addcontainer");
       if (iframe)
-      {
         content.document.body.removeChild(iframe);
-      }
     },
     fadeIn : function()
     {
@@ -58,9 +59,7 @@ var muzich_tool =  function () {
     {
       var fade = content.document.getElementById("muzich_fade");
       if (fade)
-      {
         content.document.body.removeChild(fade);
-      }
     },
     open_sharing_tool : function(iframe_url)
     {
@@ -84,6 +83,16 @@ var muzich_tool =  function () {
       container.appendChild(close_button);
       container.appendChild(iframe);
       content.document.body.appendChild(container);
+    },
+    get_sharing_url : function()
+    {
+      if(gContextMenu)
+      {
+        if (gContextMenu.onLink)
+          return muzich_config.base_url+encodeURIComponent(gContextMenu.linkURL);
+      }
+      
+      return muzich_config.base_url+encodeURIComponent(window.content.location.href);
     }
   };
 }();
@@ -93,7 +102,20 @@ var shareUrl =  function () {
     share : function () {
       muzich_tool.close_all();
       muzich_tool.fadeIn();
-      muzich_tool.open_sharing_tool(muzich_config.base_url+encodeURIComponent(window.content.location.href));
+      muzich_tool.open_sharing_tool(muzich_tool.get_sharing_url());
     }
   };
 }();
+
+function initOverlay() {
+  var menu = document.getElementById("contentAreaContextMenu");
+  menu.addEventListener("popupshowing", contextPopupShowing, false);
+}
+
+window.addEventListener("load", initOverlay, false);
+
+function contextPopupShowing() {
+  var menuitem = document.getElementById("menu-item-share");
+  if(menuitem)
+    menuitem.hidden = !gContextMenu.onLink;
+}
