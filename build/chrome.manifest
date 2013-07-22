@@ -1,0 +1,8 @@
+content MuzichXpi jar:chrome/MuzichXpi.jar!/chrome/content/
+content MuzichXpi jar:chrome/MuzichXpi.jar!/chrome/content/ contentaccessible=yes
+overlay	chrome://browser/content/browser.xul	chrome://MuzichXpi/content/browser.xul
+
+locale MuzichXpi en-US jar:chrome/MuzichXpi.jar!/locale/en-US/
+
+skin MuzichXpi classic/0.1 jar:chrome/MuzichXpi.jar!/skin/
+style	chrome://global/content/customizeToolbar.xul	chrome://MuzichXpi/skin/skin.css
