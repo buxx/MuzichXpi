@@ -71,7 +71,7 @@ var muzich_tool =  function () {
       var close_button = document.createElement('a');
       close_button.setAttribute('href', '#');
       close_button.setAttribute('id', 'muzich_close_button');
-      close_button.onclick = function(){ muzich_tool.listen_finish(); };
+      close_button.onclick = function(){ muzich_tool.close_all(); };
       close_button.innerHTML = "X";
       close_button.setAttribute("style", muzich_config.css.close_button);
       
