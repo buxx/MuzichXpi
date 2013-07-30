@@ -1,6 +1,6 @@
 
 var muzich_config = {
-  base_url : '//muzi.ch/share-from/?from_url=',
+  base_url : '//muzi.chshare-from/?from_url=',
   running : false,
   listener : null,
   css : {
@@ -13,7 +13,7 @@ var muzich_config = {
       "width: 100%; "+
       "z-index: 100000; ",
     container : "width: 710px; height: 480px; "+
-      "position: absolute; "+
+      "position: fixed; "+
       "top: 0; "+
       "left: 50%; "+
       "margin-left: -355px; "+
@@ -41,7 +41,7 @@ var muzich_config = {
 var muzich_tool =  function () {
   return {
     close_all : function () {
-      //this.end_listener();
+      this.end_listener();
       this.close_sharing_tool();
       this.fadeOut();
     },
@@ -66,27 +66,29 @@ var muzich_tool =  function () {
     },
     open_sharing_tool : function(iframe_url)
     {
-      //this.start_listener();
+      this.start_listener();
+      var htmlns = "http://www.w3.org/1999/xhtml";
       var close_button = document.createElement('a');
       close_button.setAttribute('href', '#');
       close_button.setAttribute('id', 'muzich_close_button');
-      close_button.onclick = function(){ muzich_tool.close_all(); };
+      close_button.onclick = function(){ muzich_tool.listen_finish(); };
       close_button.innerHTML = "X";
       close_button.setAttribute("style", muzich_config.css.close_button);
       
-      var container = document.createElement('div');
+      var container = document.createElementNS(htmlns,'div');
       container.setAttribute("id", "muzich_iframe_addcontainer");
       container.setAttribute("style", muzich_config.css.container);
       
-      var iframe = document.createElement('iframe');
+      var iframe = document.createElementNS(htmlns,'iframe');
+      iframe.setAttribute("id", "muzich_iframe");
       iframe.setAttribute("style", 
-        "width: 100%; height: 100%; "
+        "width: 100%; height: 100%; border: none;"
       );
       iframe.setAttribute("src", iframe_url);
       
       container.appendChild(close_button);
-      container.appendChild(iframe);
-      content.document.body.appendChild(container);
+      window.content.document.body.appendChild(container);
+      window.content.document.getElementById("muzich_iframe_addcontainer").appendChild(iframe);
     },
     valid_url : function(string) {
       var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
@@ -126,12 +128,12 @@ var muzich_tool =  function () {
     {
       if (muzich_config.running)
       {
-        var iframe = content.document.getElementById("muzich_iframe_addcontainer");
+        var iframe = window.content.document.getElementById("muzich_iframe");
         if (iframe)
         {
-          if (iframe.contentDocument.getElementById("div"))
+          if (iframe.contentDocument.getElementById("shared_from_finished"))
           {
-            this.close_all();
+            //this.close_all();
           }
         }
       }
