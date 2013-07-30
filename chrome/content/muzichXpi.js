@@ -1,6 +1,6 @@
 
 var muzich_config = {
-  base_url : '//muzi.chshare-from/?from_url=',
+  base_url : '//muzi.ch/share-from/?from_url=',
   running : false,
   listener : null,
   css : {
